@@ -139,6 +139,10 @@
 		},
 		{
 			"Name": "QOO_RootBoneAdder",
+			"Enabled": false
+		},
+		{
+			"Name": "GameplayAbilities",
 			"Enabled": true
 		}
 	]
