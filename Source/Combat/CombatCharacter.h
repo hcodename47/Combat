@@ -36,9 +36,33 @@ class ACombatCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* JumpAction;
 
+	/** Sprint Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* SprintAction;
+
+	/** Attack Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* AttackAction;
+
+	/** Heavy Attack Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* HeavyAttackAction;
+
+	/** Dodge Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* DodgeAction;
+
+	/** Parry Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* ParryAction;
+
 	/** Move Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* MoveAction;
+
+	/** Action Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* ActionAction;
 
 	/** Look Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
@@ -46,16 +70,32 @@ class ACombatCharacter : public ACharacter
 
 public:
 	ACombatCharacter();
+
+	// BP Events
+	UFUNCTION(BlueprintImplementableEvent, Category = "Input Actions")
+	void Sprint(bool bIsSprinting);
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Input Actions")
+	void Attack(bool bIsHeavy);
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Input Actions")
+	void Dodge();
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Input Actions")
+	void Parry();
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Input Actions")
+	void Action();
 	
-
 protected:
-
-	/** Called for movement input */
 	void Move(const FInputActionValue& Value);
-
-	/** Called for looking input */
 	void Look(const FInputActionValue& Value);
-			
+		
+	void SprintStart_Internal(const FInputActionValue& Value);
+	void SprintEnd_Internal(const FInputActionValue& Value);
+
+	void AttackAction_Internal(const FInputActionValue& Value);
+	void HeavyAttackAction_Internal(const FInputActionValue& Value);
 
 protected:
 
