@@ -136,6 +136,10 @@
 		{
 			"Name": "FastBuildController",
 			"Enabled": false
+		},
+		{
+			"Name": "QOO_RootBoneAdder",
+			"Enabled": true
 		}
 	]
 }
