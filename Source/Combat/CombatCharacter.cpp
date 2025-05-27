@@ -70,6 +70,9 @@ void ACombatCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 		EnhancedInputComponent->BindAction(SprintAction, ETriggerEvent::Started, this, &ACombatCharacter::SprintStart_Internal);
 		EnhancedInputComponent->BindAction(SprintAction, ETriggerEvent::Completed, this, &ACombatCharacter::SprintEnd_Internal);
 
+		EnhancedInputComponent->BindAction(CrouchAction, ETriggerEvent::Started, this, &ACombatCharacter::CrouchStart_Internal);
+		EnhancedInputComponent->BindAction(CrouchAction, ETriggerEvent::Completed, this, &ACombatCharacter::CrouchEnd_Internal);
+
 		EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Started, this, &ACombatCharacter::AttackAction_Internal);
 		EnhancedInputComponent->BindAction(HeavyAttackAction, ETriggerEvent::Started, this, &ACombatCharacter::HeavyAttackAction_Internal);
 	}
@@ -81,6 +84,11 @@ void ACombatCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 
 void ACombatCharacter::Move(const FInputActionValue& Value)
 {
+	if(IsMovementLocked())
+	{
+		return;
+	}
+
 	FVector2D MovementVector = Value.Get<FVector2D>();
 
 	if (Controller != nullptr)
@@ -114,6 +122,16 @@ void ACombatCharacter::SprintStart_Internal(const FInputActionValue& Value)
 void ACombatCharacter::SprintEnd_Internal(const FInputActionValue& Value)
 {
 	Sprint(false);
+}
+
+void ACombatCharacter::CrouchStart_Internal(const FInputActionValue& Value)
+{
+	CrouchMode(true);
+}
+
+void ACombatCharacter::CrouchEnd_Internal(const FInputActionValue& Value)
+{
+	CrouchMode(false);
 }
 
 void ACombatCharacter::AttackAction_Internal(const FInputActionValue& Value)
