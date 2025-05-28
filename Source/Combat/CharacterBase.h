@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -26,9 +24,14 @@ public:
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override { return AbilityComponent; }
 	virtual UCharacterAttributeSet* GetAttributeSet() const { return AttributeSet; }
 
+	UFUNCTION(BlueprintImplementableEvent, Category = "Events")
+	void OnAttributeChanged();
+
 protected:
 	void InitializeAttributes();
 	void GiveDefaultAbilities();
+
+	virtual void BindToAttributes();
 
 protected:
 	UPROPERTY()

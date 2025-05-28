@@ -1,13 +1,11 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "CharacterAttributeSet.h"
 #include "AbilitySystemComponent.h"
 #include "GameplayEffectExtension.h"
 
 UCharacterAttributeSet::UCharacterAttributeSet()
 {
-	InitHealth(100.f);
+	//InitMaxHealth(1.0f);
+	//InitHealth(1.0f);
 }
 
 void UCharacterAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue)

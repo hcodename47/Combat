@@ -1,5 +1,6 @@
 #include "CharacterBase.h"
 #include "AbilitySystemComponent.h"
+#include "CharacterAttributeSet.h"
 
 ACharacterBase::ACharacterBase()
 {
@@ -18,7 +19,7 @@ void ACharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 void ACharacterBase::InitializeAttributes()
 {
-	if(!AbilityComponent ||!DefaultAttributeEffect)
+	if(!AbilityComponent || !DefaultAttributeEffect)
 	{
 		return;
 	}
@@ -45,4 +46,17 @@ void ACharacterBase::GiveDefaultAbilities()
 		const FGameplayAbilitySpec AbilitySpec(Ability, 1);
 		AbilityComponent->GiveAbility(AbilitySpec);
 	}
+}
+
+void ACharacterBase::BindToAttributes()
+{
+	UAbilitySystemComponent* ASC = GetAbilitySystemComponent();
+	const UCharacterAttributeSet* CharacterAS = GetAttributeSet();
+
+	ASC->GetGameplayAttributeValueChangeDelegate(CharacterAS->GetHealthAttribute()).AddLambda(
+		[this](const FOnAttributeChangeData& Data)->void
+		{
+			OnAttributeChanged();
+		}
+	);
 }
