@@ -9,6 +9,7 @@ class UAbilitySystemComponent;
 class UGameplayAbility;
 class UGameplayEffect;
 class UCharacterAttributeSet;
+class UCharacterAnimationsComponent;
 
 UCLASS()
 class COMBAT_API ACharacterBase : public ACharacter, public IAbilitySystemInterface
@@ -45,4 +46,7 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Abilities")
 	TArray<TSubclassOf<UGameplayAbility>> DefaultAbilities;
+
+	UPROPERTY(VisibleAnywhere, meta = (ExposeFunctionCategories="Character Animations", AllowPrivateAccess = "true"))
+	TObjectPtr<UCharacterAnimationsComponent> CharacterAnimationsComponent;
 };
