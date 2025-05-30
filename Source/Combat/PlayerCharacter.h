@@ -65,6 +65,8 @@ protected:
 	void AttackAction_Internal(const FInputActionValue& Value);
 	void HeavyAttackAction_Internal(const FInputActionValue& Value);
 
+	void DodgeAction_Internal(const FInputActionValue& Value);
+
 	virtual void NotifyControllerChanged() override;
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;

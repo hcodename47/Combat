@@ -135,6 +135,11 @@ void APlayerCharacter::HeavyAttackAction_Internal(const FInputActionValue & Valu
 	Attack(true);
 }
 
+void APlayerCharacter::DodgeAction_Internal(const FInputActionValue & Value)
+{
+	Dodge();
+}
+
 void APlayerCharacter::NotifyControllerChanged()
 {
 	Super::NotifyControllerChanged();
@@ -166,5 +171,7 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent * PlayerInputCo
 
 		EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Started, this, &APlayerCharacter::AttackAction_Internal);
 		EnhancedInputComponent->BindAction(HeavyAttackAction, ETriggerEvent::Started, this, &APlayerCharacter::HeavyAttackAction_Internal);
+
+		EnhancedInputComponent->BindAction(DodgeAction, ETriggerEvent::Started, this, &APlayerCharacter::DodgeAction_Internal);
 	}
 }
