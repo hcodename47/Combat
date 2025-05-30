@@ -11,6 +11,9 @@
 		GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \
 		GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
 
+#define GATTR_NUMERIC_VALUE(AttributeSetName, PropertyName) \
+		AttributeSetName->Get##PropertyName##Attribute().GetNumericValue(AttributeSetName)
+
 UCLASS()
 class COMBAT_API UCharacterAttributeSet : public UAttributeSet
 {
@@ -29,4 +32,12 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = "Gameplay Attribute")
 	FGameplayAttributeData MaxHealth;
 	ATTRIBUTE_ACCESSORS(UCharacterAttributeSet, MaxHealth);
+
+	UPROPERTY(BlueprintReadOnly, Category = "Gameplay Attribute")
+	FGameplayAttributeData Stamina;
+	ATTRIBUTE_ACCESSORS(UCharacterAttributeSet, Stamina);
+
+	UPROPERTY(BlueprintReadOnly, Category = "Gameplay Attribute")
+	FGameplayAttributeData MaxStamina;
+	ATTRIBUTE_ACCESSORS(UCharacterAttributeSet, MaxStamina);
 };

@@ -10,6 +10,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
+#include "PlayerHUD.h"
 
 APlayerCharacter::APlayerCharacter()
 {
@@ -48,15 +49,28 @@ void APlayerCharacter::PossessedBy(AController * NewController)
 
 	InitializeAttributes();
 	GiveDefaultAbilities();
+
+	InitHUD();
 }
 
 void APlayerCharacter::InitAbilitySystemComponent()
 {
 	APlayerCharacterState* PlayerCharacterState = GetPlayerState<APlayerCharacterState>();
 	check(PlayerCharacterState);
-	AbilityComponent = PlayerCharacterState->GetAbilitySystemComponent();
+	AbilityComponent = CastChecked<UAbilitySystemComponent>(PlayerCharacterState->GetAbilitySystemComponent());
 	AbilityComponent->InitAbilityActorInfo(PlayerCharacterState, this);
 	AttributeSet = PlayerCharacterState->GetAttributeSet();
+}
+
+void APlayerCharacter::InitHUD()
+{
+	if(const APlayerController* PlayerController = Cast<APlayerController>(GetController()))
+	{
+		if(APlayerHUD* PlayerHUD = Cast<APlayerHUD>(PlayerController->GetHUD()))
+		{
+			PlayerHUD->Init();
+		}
+	}
 }
 
 void APlayerCharacter::Move(const FInputActionValue & Value)

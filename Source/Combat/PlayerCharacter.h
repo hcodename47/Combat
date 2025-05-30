@@ -51,6 +51,7 @@ public:
 
 protected:
 	void InitAbilitySystemComponent();
+	void InitHUD();
 
 	void Move(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
