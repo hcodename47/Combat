@@ -4,9 +4,6 @@
 #include "CharacterBase.h"
 #include "EnemyCharacter.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class COMBAT_API AEnemyCharacter : public ACharacterBase
 {
