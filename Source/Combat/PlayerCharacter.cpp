@@ -53,6 +53,30 @@ void APlayerCharacter::PossessedBy(AController * NewController)
 	InitHUD();
 }
 
+void APlayerCharacter::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	UpdateAutoMove(DeltaTime);
+}
+
+void APlayerCharacter::AutoMoveForward(float Distance)
+{
+	bAutoMove = true;
+	AutoMoveDistance = Distance;
+	AutoMoveStartLocation = GetActorLocation();
+	AutoMoveDirection = GetActorForwardVector();
+
+	SetMovementLocked(true);
+}
+
+void APlayerCharacter::StopAutoMove()
+{
+	bAutoMove = false;
+	AutoMoveDistance = 0.0f;
+	AutoMoveStartLocation = FVector::ZeroVector;
+	SetMovementLocked(false);
+}
+
 void APlayerCharacter::InitAbilitySystemComponent()
 {
 	APlayerCharacterState* PlayerCharacterState = GetPlayerState<APlayerCharacterState>();
@@ -60,6 +84,8 @@ void APlayerCharacter::InitAbilitySystemComponent()
 	AbilityComponent = CastChecked<UAbilitySystemComponent>(PlayerCharacterState->GetAbilitySystemComponent());
 	AbilityComponent->InitAbilityActorInfo(PlayerCharacterState, this);
 	AttributeSet = PlayerCharacterState->GetAttributeSet();
+
+	SetMovementLocked(false);
 }
 
 void APlayerCharacter::InitHUD()
@@ -169,9 +195,25 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent * PlayerInputCo
 		EnhancedInputComponent->BindAction(CrouchAction, ETriggerEvent::Started, this, &APlayerCharacter::CrouchStart_Internal);
 		EnhancedInputComponent->BindAction(CrouchAction, ETriggerEvent::Completed, this, &APlayerCharacter::CrouchEnd_Internal);
 
-		EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Started, this, &APlayerCharacter::AttackAction_Internal);
-		EnhancedInputComponent->BindAction(HeavyAttackAction, ETriggerEvent::Started, this, &APlayerCharacter::HeavyAttackAction_Internal);
+		EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Triggered, this, &APlayerCharacter::AttackAction_Internal);
+		EnhancedInputComponent->BindAction(HeavyAttackAction, ETriggerEvent::Triggered, this, &APlayerCharacter::HeavyAttackAction_Internal);
 
 		EnhancedInputComponent->BindAction(DodgeAction, ETriggerEvent::Started, this, &APlayerCharacter::DodgeAction_Internal);
+	}
+}
+
+void APlayerCharacter::UpdateAutoMove(float DeltaTime)
+{
+	if(bAutoMove)
+	{
+		AddMovementInput(AutoMoveDirection, 1.0f);
+	}
+
+	FVector CurrentLocation = GetActorLocation();
+	float DistanceMoved = FVector::Dist(CurrentLocation, AutoMoveStartLocation);
+	if(DistanceMoved >= AutoMoveDistance)
+	{
+		StopAutoMove();
+		OnAutoMoveFinished();
 	}
 }

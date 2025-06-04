@@ -18,6 +18,12 @@ protected:
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<UPlayerAttributesWidget> PlayerAttributesWidgetClass;
 
-private:
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UUserWidget> BossHealthWidgetClass;
+
+protected:
+	UPROPERTY(BlueprintReadOnly)
 	TObjectPtr<UPlayerAttributesWidget> PlayerAttributesWidget;
+	UPROPERTY(BlueprintReadOnly)
+	TObjectPtr<UUserWidget> BossHealthWidget;
 };
