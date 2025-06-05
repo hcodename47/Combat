@@ -3,7 +3,6 @@
 #include "Abilities/GameplayAbility.h"
 #include "AbilitySystemComponent.h"
 #include "AIController.h"
-#include "CharacterBase.h"
 
 //////////////////////////////////
 
@@ -55,14 +54,14 @@ EBTNodeResult::Type UBTTask_GASTryUseAbility::ExecuteTask(UBehaviorTreeComponent
 		return EBTNodeResult::Failed;
 	}
 
-	ACharacterBase* CharacterBase =	Cast<ACharacterBase>(Controller->GetPawn());
-	if (CharacterBase == nullptr)
+	APawn* Pawn = Controller->GetPawn();
+	if (Pawn == nullptr)
 	{
-		UE_VLOG(OwnerComp.GetOwner(), LogBehaviorTree, Error, TEXT("UBTTask_GASTryUseAbility::ExecuteTask failed since Owner is not SubClass of ACharacterBase."));
+		UE_VLOG(OwnerComp.GetOwner(), LogBehaviorTree, Error, TEXT("UBTTask_GASTryUseAbility::ExecuteTask failed since Owner is not SubClass of APawn."));
 		return EBTNodeResult::Failed;
 	}
 
-	UAbilitySystemComponent* ASC = CharacterBase->GetAbilitySystemComponent();
+	UAbilitySystemComponent* ASC = Pawn->FindComponentByClass<UAbilitySystemComponent>();
 	if(ASC == nullptr)
 	{
 		UE_VLOG(OwnerComp.GetOwner(), LogBehaviorTree, Error, TEXT("UBTTask_GASTryUseAbility::ExecuteTask failed since AbilitySystemComponent is missing."));
@@ -115,9 +114,9 @@ void UBTTask_GASTryUseAbility::TickTask(UBehaviorTreeComponent & OwnerComp, uint
 	{
 		if(AAIController* Controller = OwnerComp.GetAIOwner())
 		{
-			if(ACharacterBase* CharacterBase =	Cast<ACharacterBase>(Controller->GetPawn()))
+			if(APawn* Pawn = Controller->GetPawn())
 			{
-				if(UAbilitySystemComponent* ASC = CharacterBase->GetAbilitySystemComponent())
+				if(UAbilitySystemComponent* ASC = Pawn->FindComponentByClass<UAbilitySystemComponent>())
 				{
 					if(const FGameplayAbilitySpec* GameplayAbilitySpec = ASC->FindAbilitySpecFromHandle(Runtime->AbilitySpecHandle))
 					{
@@ -137,11 +136,11 @@ EBTNodeResult::Type UBTTask_GASTryUseAbility::AbortTask(UBehaviorTreeComponent &
 	FBTTask_GASTryUseAbility_Runtime* Runtime = CastInstanceNodeMemory<FBTTask_GASTryUseAbility_Runtime>(NodeMemory);
 	if(Runtime && Runtime->AbilitySpecHandle.IsValid())
 	{
-		if(AAIController* MyController = OwnerComp.GetAIOwner())
+		if(AAIController* Controller = OwnerComp.GetAIOwner())
 		{
-			if(ACharacterBase* CharacterBase =	Cast<ACharacterBase>(MyController->GetPawn()))
+			if(APawn* Pawn = Controller->GetPawn())
 			{
-				if(UAbilitySystemComponent* ASC = CharacterBase->GetAbilitySystemComponent())
+				if(UAbilitySystemComponent* ASC = Pawn->FindComponentByClass<UAbilitySystemComponent>())
 				{
 					ASC->CancelAbilityHandle(Runtime->AbilitySpecHandle);
 				}

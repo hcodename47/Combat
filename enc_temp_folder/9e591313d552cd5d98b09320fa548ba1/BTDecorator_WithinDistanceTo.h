@@ -4,6 +4,9 @@
 #include "BehaviorTree/Decorators/BTDecorator_BlackboardBase.h"
 #include "BTDecorator_WithinDistanceTo.generated.h"
 
+/**
+ * 
+ */
 UCLASS()
 class COMBAT_API UBTDecorator_WithinDistanceTo : public UBTDecorator
 {
