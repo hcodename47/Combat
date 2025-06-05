@@ -52,12 +52,7 @@ bool UBTDecorator_WithinDistanceTo::CalculateRawConditionValue(UBehaviorTreeComp
 	{
 		const float Distance = Distance2D ? FVector::Dist2D(PointA, PointB) : FVector::Dist(PointA, PointB);
 
-		if(CheckMinDistance && Distance < MinDistance)
-		{
-			return false;
-		}
-
-		if(CheckMaxDistance && Distance > MaxDistance)
+		if((CheckMinDistance && Distance < MinDistance) || (CheckMaxDistance && Distance > MaxDistance))
 		{
 			return false;
 		}
@@ -70,10 +65,13 @@ bool UBTDecorator_WithinDistanceTo::CalculateRawConditionValue(UBehaviorTreeComp
 
 FString UBTDecorator_WithinDistanceTo::GetStaticDescription() const
 {
-	return FString::Printf(TEXT("Distance between: \n%s and \n%s\nMin: %f\nMax: %f"), 
+	FString Min = CheckMinDistance ? FString::Printf(TEXT("\nMin: %.3f"), MinDistance) : "";
+	FString Max = CheckMaxDistance ? FString::Printf(TEXT("\nMax: %.3f"), MaxDistance) : "";
+
+	return FString::Printf(TEXT("Distance between: %s and %s%s%s"), 
 		*BlackboardKeyA.SelectedKeyName.ToString(), 
 		*BlackboardKeyB.SelectedKeyName.ToString(),
-		MinDistance, 
-		MaxDistance
+		*Min, 
+		*Max
 	);
 }
