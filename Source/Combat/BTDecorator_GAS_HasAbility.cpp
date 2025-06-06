@@ -52,5 +52,7 @@ FString UBTDecorator_GAS_HasAbility::GetStaticDescription() const
 		AbilityDesc = GameplayAbilityClass->GetDisplayNameText().ToString();
 	}
 
-	return FString::Printf(TEXT("Ability To Check: %s"), *AbilityDesc);
+	return FString::Printf(TEXT("%s\nAbility To Check: %s"), 
+		*Super::GetStaticDescription(),
+		*AbilityDesc);
 }

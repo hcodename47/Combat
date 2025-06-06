@@ -28,8 +28,8 @@ protected:
 	TArray<FGameplayTag> Tags;
 
 	UPROPERTY(EditAnywhere, Category = "Condition")
-	EBTDecorator_GAS_GameplayTagCheck_Type MatchType;
+	EBTDecorator_GAS_GameplayTagCheck_Type MatchType = EBTDecorator_GAS_GameplayTagCheck_Type::MatchAll;
 
 	UPROPERTY(EditAnywhere, Category = "Condition")
-	bool bExactMatch;
+	bool bExactMatch = false;
 };

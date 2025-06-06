@@ -77,5 +77,7 @@ FString UBTDecorator_GAS_GameplayTagCheck::GetStaticDescription() const
 		TagList.Append(FString::Printf(TEXT("\n - %s"), *Tag.ToString()));
 	}
 
-	return FString::Printf(TEXT("Actor has %s of these Gameplay Tags:%s"), *Operation, *TagList);
+	return FString::Printf(TEXT("%s\nActor has %s of these Gameplay Tags:%s"), 
+		*Super::GetStaticDescription(),
+		*Operation, *TagList);
 }

@@ -68,7 +68,8 @@ FString UBTDecorator_WithinDistanceTo::GetStaticDescription() const
 	FString Min = CheckMinDistance ? FString::Printf(TEXT("\nMin: %.3f"), MinDistance) : "";
 	FString Max = CheckMaxDistance ? FString::Printf(TEXT("\nMax: %.3f"), MaxDistance) : "";
 
-	return FString::Printf(TEXT("Distance between: %s and %s%s%s"), 
+	return FString::Printf(TEXT("%s\nDistance between: %s and %s%s%s"), 
+		*Super::GetStaticDescription(),
 		*BlackboardKeyA.SelectedKeyName.ToString(), 
 		*BlackboardKeyB.SelectedKeyName.ToString(),
 		*Min, 

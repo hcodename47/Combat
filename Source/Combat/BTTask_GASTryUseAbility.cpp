@@ -29,7 +29,9 @@ FString UBTTask_GASTryUseAbility::GetStaticDescription() const
 		AbilityDesc = GameplayAbilityClass->GetDisplayNameText().ToString();
 	}
 
-	return FString::Printf(TEXT("Gameplay Ability: [%s]"), *AbilityDesc);
+	return FString::Printf(TEXT("%s\nGameplay Ability: [%s]"), 
+		*Super::GetStaticDescription(),
+		*AbilityDesc);
 }
 
 EBTNodeResult::Type UBTTask_GASTryUseAbility::ExecuteTask(UBehaviorTreeComponent & OwnerComp, uint8 * NodeMemory)

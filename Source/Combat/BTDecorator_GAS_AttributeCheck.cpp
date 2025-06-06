@@ -168,7 +168,9 @@ FString UBTDecorator_GAS_AttributeCheck::GetStaticDescription() const
 		break;
 	}
 	
-	return FString::Printf(TEXT("Check if [%s] is\n%s\n%s"), *Checked, *Operation, *Comparer);
+	return FString::Printf(TEXT("%s\nCheck if [%s] is\n%s\n%s"), 
+		*Super::GetStaticDescription(),
+		*Checked, *Operation, *Comparer);
 }
 
 float UBTDecorator_GAS_AttributeCheck::GetAttributeValue(const FGameplayAttribute& GameplayAttribute, UAbilitySystemComponent* AbilitySystemComponent) const
