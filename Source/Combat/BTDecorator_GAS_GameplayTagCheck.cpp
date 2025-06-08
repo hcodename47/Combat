@@ -5,7 +5,7 @@
 
 UBTDecorator_GAS_GameplayTagCheck::UBTDecorator_GAS_GameplayTagCheck()
 {
-	NodeName = "GAS Gameplay Tag Check";
+	NodeName = "GAS Gameplay Tag Check (Self)";
 }
 
 bool UBTDecorator_GAS_GameplayTagCheck::CalculateRawConditionValue(UBehaviorTreeComponent & OwnerComp, uint8 * NodeMemory) const

@@ -51,12 +51,24 @@ void APlayerCharacter::PossessedBy(AController * NewController)
 	GiveDefaultAbilities();
 
 	InitHUD();
+
+	BindToAttributes();
 }
 
 void APlayerCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	UpdateAutoMove(DeltaTime);
+}
+
+void APlayerCharacter::SetMovementLocked(bool aValue)
+{
+	if(aValue)
+		MovementLockedCounter++;
+	else
+		MovementLockedCounter--;
+
+	MovementLockedCounter = FMath::Max(0, MovementLockedCounter);
 }
 
 void APlayerCharacter::AutoMoveForward(float Distance)
@@ -101,7 +113,7 @@ void APlayerCharacter::InitHUD()
 
 void APlayerCharacter::Move(const FInputActionValue & Value)
 {
-	if(IsMovementLocked())
+	if(IsMovementLocked() || !bIsCharacterAlive)
 	{
 		return;
 	}
@@ -207,13 +219,13 @@ void APlayerCharacter::UpdateAutoMove(float DeltaTime)
 	if(bAutoMove)
 	{
 		AddMovementInput(AutoMoveDirection, 1.0f);
-	}
 
-	FVector CurrentLocation = GetActorLocation();
-	float DistanceMoved = FVector::Dist(CurrentLocation, AutoMoveStartLocation);
-	if(DistanceMoved >= AutoMoveDistance)
-	{
-		StopAutoMove();
-		OnAutoMoveFinished();
+		FVector CurrentLocation = GetActorLocation();
+		float DistanceMoved = FVector::Dist(CurrentLocation, AutoMoveStartLocation);
+		if(DistanceMoved >= AutoMoveDistance)
+		{
+			StopAutoMove();
+			OnAutoMoveFinished();
+		}
 	}
 }

@@ -20,4 +20,7 @@ protected:
 public:	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Character Animations",meta=(AllowPrivateAccess = "true"))
 	UAnimMontage* OnHurtMontage;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Character Animations",meta=(AllowPrivateAccess = "true"))
+	UAnimMontage* OnDeathMontage;
 };

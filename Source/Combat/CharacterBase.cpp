@@ -2,6 +2,7 @@
 #include "AbilitySystemComponent.h"
 #include "CharacterAttributeSet.h"
 #include "CharacterAnimationsComponent.h"
+#include "Helpers.h"
 
 ACharacterBase::ACharacterBase()
 {
@@ -51,15 +52,37 @@ void ACharacterBase::GiveDefaultAbilities()
 	}
 }
 
+void ACharacterBase::OnAttributeChanged_Internal(const FOnAttributeChangeData & Data)
+{
+	UAbilitySystemComponent* ASC = GetAbilitySystemComponent();
+	const UCharacterAttributeSet* CharacterAS = GetAttributeSet();
+
+	if(Data.Attribute == CharacterAS->GetHealthAttribute())
+	{
+		float value = Helpers::GetAttributeValue(Data.Attribute, ASC);
+		if(value <= 0.0f && bIsCharacterAlive)
+		{
+			bIsCharacterAlive = false;
+			OnDeath();
+		}
+	}
+
+	OnAttributeChanged();
+}
+
 void ACharacterBase::BindToAttributes()
 {
 	UAbilitySystemComponent* ASC = GetAbilitySystemComponent();
 	const UCharacterAttributeSet* CharacterAS = GetAttributeSet();
 
+	/*
 	ASC->GetGameplayAttributeValueChangeDelegate(CharacterAS->GetHealthAttribute()).AddLambda(
 		[this](const FOnAttributeChangeData& Data)->void
 		{
 			OnAttributeChanged();
 		}
 	);
+	*/
+
+	ASC->GetGameplayAttributeValueChangeDelegate(CharacterAS->GetHealthAttribute()).AddUObject(this, &ACharacterBase::OnAttributeChanged_Internal);
 }

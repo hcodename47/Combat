@@ -8,7 +8,7 @@
 
 UBTDecorator_GAS_AttributeCheck::UBTDecorator_GAS_AttributeCheck()
 {
-	NodeName = "GAS Attribute Check";
+	NodeName = "GAS Attribute Check (Self)";
 	BlackboardKey.AddFloatFilter(this, GET_MEMBER_NAME_CHECKED(UBTDecorator_GAS_AttributeCheck, BlackboardKey));
 	BlackboardKey.AddIntFilter(this, GET_MEMBER_NAME_CHECKED(UBTDecorator_GAS_AttributeCheck, BlackboardKey));
 }

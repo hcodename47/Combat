@@ -28,9 +28,11 @@ public:
 	FORCEINLINE UCameraComponent* GetFollowCamera() const { return FollowCamera; }
 
 	UFUNCTION(BlueprintCallable, Category = "Combat Character")
-	void SetMovementLocked(bool aValue) { bMovementLocked = aValue; }
+	void SetMovementLocked(bool aValue);
 	UFUNCTION(BlueprintCallable, Category = "Combat Character")
-	bool IsMovementLocked() const { return bMovementLocked; }
+	void ForceUnlockMovement() { MovementLockedCounter = 0; }
+	UFUNCTION(BlueprintCallable, Category = "Combat Character")
+	bool IsMovementLocked() const { return MovementLockedCounter > 0; }
 
 	UFUNCTION(BlueprintCallable, Category = "Combat Character")
 	void AutoMoveForward(float Distance);
@@ -84,8 +86,7 @@ protected:
 	void UpdateAutoMove(float DeltaTime);
 
 protected:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Movement, meta = (AllowPrivateAccess = "true"))
-	bool bMovementLocked = false;
+	int MovementLockedCounter = 0;
 
 	bool bAutoMove = false;
 	float AutoMoveDistance = 0.0f;
