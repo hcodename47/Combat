@@ -49,7 +49,7 @@ FString UBTDecorator_GAS_HasAbility::GetStaticDescription() const
 	FString AbilityDesc("not set");
 	if (GameplayAbilityClass != nullptr)
 	{
-		AbilityDesc = GameplayAbilityClass->GetDisplayNameText().ToString();
+		AbilityDesc = GameplayAbilityClass->GetName();
 	}
 
 	return FString::Printf(TEXT("%s\nAbility To Check: %s"), 

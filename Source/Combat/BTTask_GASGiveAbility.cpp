@@ -80,7 +80,7 @@ FString UBTTask_GASGiveAbility::GetStaticDescription() const
 	FString AbilityDesc("not set");
 	if (GameplayAbilityClass != nullptr)
 	{
-		AbilityDesc = GameplayAbilityClass->GetDisplayNameText().ToString();
+		AbilityDesc = GameplayAbilityClass->GetName();
 	}
 
 	FString LevelDesc("not set");

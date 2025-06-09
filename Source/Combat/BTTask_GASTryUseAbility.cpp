@@ -26,7 +26,7 @@ FString UBTTask_GASTryUseAbility::GetStaticDescription() const
 	FString AbilityDesc("not set");
 	if (GameplayAbilityClass != nullptr)
 	{
-		AbilityDesc = GameplayAbilityClass->GetDisplayNameText().ToString();
+		AbilityDesc = GameplayAbilityClass->GetName();
 	}
 
 	return FString::Printf(TEXT("%s\nGameplay Ability: [%s]"), 
