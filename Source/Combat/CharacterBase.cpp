@@ -14,11 +14,37 @@ ACharacterBase::ACharacterBase()
 void ACharacterBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	HandleInvulnerability(DeltaTime);
 }
 
 void ACharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+}
+
+void ACharacterBase::MakeCharacterInvulnerable(float Length)
+{
+    if(Length == 0.0f)
+	{
+		bIsInvulnerable = false;
+		return;
+	}
+
+	InvulnerableTime = Length;
+	bIsInvulnerable = true;
+}
+
+void ACharacterBase::Kill()
+{
+	if(UAbilitySystemComponent* ASC = GetAbilitySystemComponent())
+	{
+		if(UCharacterAttributeSet* CharacterAS = GetAttributeSet())
+		{
+			CharacterAS->SetHealth(0.0f);
+			OnDeath();
+		}
+	}
 }
 
 void ACharacterBase::InitializeAttributes()
@@ -85,4 +111,16 @@ void ACharacterBase::BindToAttributes()
 	*/
 
 	ASC->GetGameplayAttributeValueChangeDelegate(CharacterAS->GetHealthAttribute()).AddUObject(this, &ACharacterBase::OnAttributeChanged_Internal);
+}
+
+void ACharacterBase::HandleInvulnerability(float DeltaTime)
+{
+	if(InvulnerableTime <= 0.0f)
+		return;
+
+	InvulnerableTime -= DeltaTime;
+	if(InvulnerableTime <= 0.0f)
+	{
+		bIsInvulnerable = false;
+	}
 }

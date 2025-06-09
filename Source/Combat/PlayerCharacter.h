@@ -35,7 +35,7 @@ public:
 	bool IsMovementLocked() const { return MovementLockedCounter > 0; }
 
 	UFUNCTION(BlueprintCallable, Category = "Combat Character")
-	void AutoMoveForward(float Distance);
+	void AutoMoveForward(float Distance, FVector Direction = FVector::ZeroVector);
 	UFUNCTION(BlueprintCallable, Category = "Combat Character")
 	void StopAutoMove();
 
@@ -78,6 +78,7 @@ protected:
 	void HeavyAttackAction_Internal(const FInputActionValue& Value);
 
 	void DodgeAction_Internal(const FInputActionValue& Value);
+	void ParryAction_Internal(const FInputActionValue& Value);
 
 	virtual void NotifyControllerChanged() override;
 

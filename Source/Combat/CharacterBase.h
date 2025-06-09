@@ -29,6 +29,15 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Status")
 	bool IsCharacterAlive() const { return bIsCharacterAlive; }
 
+	UFUNCTION(BlueprintCallable, Category = "Status")
+	bool IsCharacterInvulnerable() const { return bIsInvulnerable; }
+
+	UFUNCTION(BlueprintCallable, Category = "Status")
+	void MakeCharacterInvulnerable(float Length);
+
+	UFUNCTION(BlueprintCallable, Category = "Debug")
+	void Kill();
+
 	UFUNCTION(BlueprintImplementableEvent, Category = "Events")
 	void OnAttributeChanged();
 
@@ -42,6 +51,8 @@ protected:
 	virtual void OnAttributeChanged_Internal(const FOnAttributeChangeData& Data);
 
 	virtual void BindToAttributes();
+
+	void HandleInvulnerability(float DeltaTime);
 
 protected:
 	UPROPERTY()
@@ -61,4 +72,8 @@ protected:
 
 	UPROPERTY(BlueprintReadOnly, Category = "Status")
 	bool bIsCharacterAlive = true;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Status")
+	bool bIsInvulnerable = false;
+	float InvulnerableTime = 0.0f;
 };

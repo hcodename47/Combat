@@ -11,6 +11,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
 #include "PlayerHUD.h"
+#include "Misc/Optional.h"
 
 APlayerCharacter::APlayerCharacter()
 {
@@ -41,7 +42,7 @@ APlayerCharacter::APlayerCharacter()
 	FollowCamera->bUsePawnControlRotation = false;
 }
 
-void APlayerCharacter::PossessedBy(AController * NewController)
+void APlayerCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
 	
@@ -71,12 +72,12 @@ void APlayerCharacter::SetMovementLocked(bool aValue)
 	MovementLockedCounter = FMath::Max(0, MovementLockedCounter);
 }
 
-void APlayerCharacter::AutoMoveForward(float Distance)
+void APlayerCharacter::AutoMoveForward(float Distance, FVector Direction/* = FVector::ZeroVector*/)
 {
 	bAutoMove = true;
 	AutoMoveDistance = Distance;
 	AutoMoveStartLocation = GetActorLocation();
-	AutoMoveDirection = GetActorForwardVector();
+	AutoMoveDirection = Direction != FVector::ZeroVector ? Direction : GetActorForwardVector();
 
 	SetMovementLocked(true);
 }
@@ -111,7 +112,7 @@ void APlayerCharacter::InitHUD()
 	}
 }
 
-void APlayerCharacter::Move(const FInputActionValue & Value)
+void APlayerCharacter::Move(const FInputActionValue& Value)
 {
 	if(IsMovementLocked() || !bIsCharacterAlive)
 	{
@@ -132,7 +133,7 @@ void APlayerCharacter::Move(const FInputActionValue & Value)
 	}
 }
 
-void APlayerCharacter::Look(const FInputActionValue & Value)
+void APlayerCharacter::Look(const FInputActionValue& Value)
 {
 	FVector2D LookAxisVector = Value.Get<FVector2D>();
 
@@ -143,39 +144,44 @@ void APlayerCharacter::Look(const FInputActionValue & Value)
 	}
 }
 
-void APlayerCharacter::SprintStart_Internal(const FInputActionValue & Value)
+void APlayerCharacter::SprintStart_Internal(const FInputActionValue& Value)
 {
 	Sprint(true);
 }
 
-void APlayerCharacter::SprintEnd_Internal(const FInputActionValue & Value)
+void APlayerCharacter::SprintEnd_Internal(const FInputActionValue& Value)
 {
 	Sprint(false);
 }
 
-void APlayerCharacter::CrouchStart_Internal(const FInputActionValue & Value)
+void APlayerCharacter::CrouchStart_Internal(const FInputActionValue& Value)
 {
 	CrouchMode(true);
 }
 
-void APlayerCharacter::CrouchEnd_Internal(const FInputActionValue & Value)
+void APlayerCharacter::CrouchEnd_Internal(const FInputActionValue& Value)
 {
 	CrouchMode(false);
 }
 
-void APlayerCharacter::AttackAction_Internal(const FInputActionValue & Value)
+void APlayerCharacter::AttackAction_Internal(const FInputActionValue& Value)
 {
 	Attack(false);
 }
 
-void APlayerCharacter::HeavyAttackAction_Internal(const FInputActionValue & Value)
+void APlayerCharacter::HeavyAttackAction_Internal(const FInputActionValue& Value)
 {
 	Attack(true);
 }
 
-void APlayerCharacter::DodgeAction_Internal(const FInputActionValue & Value)
+void APlayerCharacter::DodgeAction_Internal(const FInputActionValue& Value)
 {
 	Dodge();
+}
+
+void APlayerCharacter::ParryAction_Internal(const FInputActionValue& Value)
+{
+	Parry();
 }
 
 void APlayerCharacter::NotifyControllerChanged()
@@ -211,6 +217,7 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent * PlayerInputCo
 		EnhancedInputComponent->BindAction(HeavyAttackAction, ETriggerEvent::Triggered, this, &APlayerCharacter::HeavyAttackAction_Internal);
 
 		EnhancedInputComponent->BindAction(DodgeAction, ETriggerEvent::Started, this, &APlayerCharacter::DodgeAction_Internal);
+		EnhancedInputComponent->BindAction(ParryAction, ETriggerEvent::Started, this, &APlayerCharacter::ParryAction_Internal);
 	}
 }
 
