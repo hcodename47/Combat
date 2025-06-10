@@ -12,6 +12,8 @@ class UCharacterAttributeSet;
 class UCharacterAnimationsComponent;
 struct FOnAttributeChangeData;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FDeathEventDispatcher);
+
 UCLASS()
 class COMBAT_API ACharacterBase : public ACharacter, public IAbilitySystemInterface
 {
@@ -43,6 +45,9 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Events")
 	void OnDeath();
+
+	UPROPERTY(BlueprintAssignable, Category = "Status")
+	FDeathEventDispatcher OnCharacterDeathDispatcher;
 
 protected:
 	void InitializeAttributes();

@@ -7,6 +7,8 @@
 UBTDecorator_WithinDistanceTo::UBTDecorator_WithinDistanceTo()
 {
 	NodeName = "Is Within Distance";
+	INIT_DECORATOR_NODE_NOTIFY_FLAGS();
+
 	MinDistance = 0.0f;
 	MaxDistance = 100.0f;
 

@@ -43,6 +43,7 @@ void ACharacterBase::Kill()
 		{
 			CharacterAS->SetHealth(0.0f);
 			OnDeath();
+			OnCharacterDeathDispatcher.Broadcast();
 		}
 	}
 }
