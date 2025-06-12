@@ -1,5 +1,6 @@
 #include "EnemyCharacter.h"
 #include "AbilitySystemComponent.h"
+#include "CharacterAnimationsComponent.h"
 #include "CharacterAttributeSet.h"
 
 AEnemyCharacter::AEnemyCharacter()
@@ -8,6 +9,8 @@ AEnemyCharacter::AEnemyCharacter()
 
 	AbilityComponent = CreateDefaultSubobject<UAbilitySystemComponent>("AbilitySystemComponent");
 	AttributeSet = CreateDefaultSubobject<UCharacterAttributeSet>("AttributeSet");
+
+	CharacterAnimationsComponent = CreateDefaultSubobject<UCharacterAnimationsComponent>(TEXT("CharacterAnimationsComponent"));
 }
 
 void AEnemyCharacter::BeginPlay()

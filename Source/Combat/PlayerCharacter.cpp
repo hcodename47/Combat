@@ -10,11 +10,15 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
+#include "PlayerCharAnimationsComponent.h"
 #include "PlayerHUD.h"
 #include "Misc/Optional.h"
 
 APlayerCharacter::APlayerCharacter()
 {
+	PlayerCharacterAnimationsComponent = CreateDefaultSubobject<UPlayerCharAnimationsComponent>(TEXT("PlayerCharAnimationsComponent"));
+	CharacterAnimationsComponent = PlayerCharacterAnimationsComponent;
+
 	PrimaryActorTick.bCanEverTick = true;
 
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);

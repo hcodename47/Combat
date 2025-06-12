@@ -1,14 +1,11 @@
 #include "CharacterBase.h"
 #include "AbilitySystemComponent.h"
 #include "CharacterAttributeSet.h"
-#include "CharacterAnimationsComponent.h"
 #include "Helpers.h"
 
 ACharacterBase::ACharacterBase()
 {
 	PrimaryActorTick.bCanEverTick = true;
-
-	CharacterAnimationsComponent = CreateDefaultSubobject<UCharacterAnimationsComponent>(TEXT("CharacterAnimationsComponent"));
 }
 
 void ACharacterBase::Tick(float DeltaTime)

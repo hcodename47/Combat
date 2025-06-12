@@ -10,6 +10,7 @@ class USpringArmComponent;
 class UCameraComponent;
 class UInputMappingContext;
 class UInputAction;
+class UPlayerCharAnimationsComponent;
 struct FInputActionValue;
 
 UCLASS(config=Game)
@@ -93,6 +94,9 @@ protected:
 	float AutoMoveDistance = 0.0f;
 	FVector AutoMoveStartLocation;
 	FVector AutoMoveDirection;
+
+	UPROPERTY(VisibleAnywhere, meta = (ExposeFunctionCategories="Character Animations", AllowPrivateAccess = "true"))
+	TObjectPtr<UPlayerCharAnimationsComponent> PlayerCharacterAnimationsComponent;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	USpringArmComponent* CameraBoom;

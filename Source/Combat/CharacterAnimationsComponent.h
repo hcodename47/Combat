@@ -14,13 +14,16 @@ class COMBAT_API UCharacterAnimationsComponent : public UActorComponent
 public:	
 	UCharacterAnimationsComponent();
 
-protected:
-	virtual void BeginPlay() override;
+	UFUNCTION(BlueprintCallable, Category = "Character Animations")
+	UAnimMontage* GetRandomHurtMontage() const;
 
-public:	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Character Animations",meta=(AllowPrivateAccess = "true"))
+protected:
+	UAnimMontage* GetRandomElement(const TArray<UAnimMontage*>& Src) const;
+
+protected:	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Animations",meta=(AllowPrivateAccess = "true"))
 	TArray<UAnimMontage*> OnHurtMontages;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Character Animations",meta=(AllowPrivateAccess = "true"))
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Animations",meta=(AllowPrivateAccess = "true"))
 	UAnimMontage* OnDeathMontage;
 };
