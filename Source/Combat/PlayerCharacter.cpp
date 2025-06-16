@@ -188,6 +188,11 @@ void APlayerCharacter::ParryAction_Internal(const FInputActionValue& Value)
 	Parry();
 }
 
+void APlayerCharacter::SpecialAction_Internal(const FInputActionValue& Value)
+{
+	SpecAttack(0);
+}
+
 void APlayerCharacter::NotifyControllerChanged()
 {
 	Super::NotifyControllerChanged();
@@ -222,6 +227,8 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent * PlayerInputCo
 
 		EnhancedInputComponent->BindAction(DodgeAction, ETriggerEvent::Started, this, &APlayerCharacter::DodgeAction_Internal);
 		EnhancedInputComponent->BindAction(ParryAction, ETriggerEvent::Started, this, &APlayerCharacter::ParryAction_Internal);
+
+		EnhancedInputComponent->BindAction(ActionAction, ETriggerEvent::Started, this, &APlayerCharacter::SpecialAction_Internal);
 	}
 }
 

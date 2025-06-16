@@ -51,6 +51,9 @@ public:
 	void Attack(bool bIsHeavy);
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Input Actions")
+	void SpecAttack(int Index);
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Input Actions")
 	void Dodge();
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Input Actions")
@@ -80,6 +83,7 @@ protected:
 
 	void DodgeAction_Internal(const FInputActionValue& Value);
 	void ParryAction_Internal(const FInputActionValue& Value);
+	void SpecialAction_Internal(const FInputActionValue& Value);
 
 	virtual void NotifyControllerChanged() override;
 
