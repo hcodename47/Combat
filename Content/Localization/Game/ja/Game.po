@@ -1,0 +1,148 @@
+﻿# Game Japanese translation.
+# Fill out your copyright notice in the Description page of Project Settings.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Game\n"
+"POT-Creation-Date: 2025-06-19 08:36\n"
+"PO-Revision-Date: 2025-06-19 08:36\n"
+"Language-Team: \n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. Key:	8CA577F84C4EE7BABDC0DEB285F4AF41
+#. SourceLocation:	/Game/UI/BP_UI_Enemy_HealthBar.BP_UI_Enemy_HealthBar_C:Get_HealthValue_Text [Script Bytecode]
+#: /Game/UI/BP_UI_Enemy_HealthBar.BP_UI_Enemy_HealthBar_C:Get_HealthValue_Text [Script Bytecode]
+msgctxt ",8CA577F84C4EE7BABDC0DEB285F4AF41"
+msgid "{CURR}/{MAX}"
+msgstr ""
+
+#. Key:	17B5B0DF44B10C7CEFCA4C910634EF03
+#. SourceLocation:	/Game/UI/BP_UI_Enemy_HealthBar.BP_UI_Enemy_HealthBar_C:WidgetTree.HealthValue.Text
+#: /Game/UI/BP_UI_Enemy_HealthBar.BP_UI_Enemy_HealthBar_C:WidgetTree.HealthValue.Text
+msgctxt ",17B5B0DF44B10C7CEFCA4C910634EF03"
+msgid "0/0"
+msgstr ""
+
+#. Key:	A884AEBD4F632890F8D6EE93883BB5E3
+#. SourceLocation:	/Game/UI/BP_UI_Enemy_HealthBar.BP_UI_Enemy_HealthBar_C:WidgetTree.Name.Text
+#: /Game/UI/BP_UI_Enemy_HealthBar.BP_UI_Enemy_HealthBar_C:WidgetTree.Name.Text
+msgctxt ",A884AEBD4F632890F8D6EE93883BB5E3"
+msgid "Name"
+msgstr ""
+
+#. Key:	05CB1ECD430E784A39C3F1A5857FA337
+#. SourceLocation:	/Game/UI/BP_UI_FloatingDamageNumber.BP_UI_FloatingDamageNumber_C:Get_DamageText_Text [Script Bytecode]
+#: /Game/UI/BP_UI_FloatingDamageNumber.BP_UI_FloatingDamageNumber_C:Get_DamageText_Text [Script Bytecode]
+msgctxt ",05CB1ECD430E784A39C3F1A5857FA337"
+msgid "{VAL}"
+msgstr ""
+
+#. Key:	5E05531D474046FD09BBB69E8FE061DA
+#. SourceLocation:	/Game/UI/BP_UI_FloatingDamageNumber.BP_UI_FloatingDamageNumber_C:WidgetTree.DamageText.Text
+#: /Game/UI/BP_UI_FloatingDamageNumber.BP_UI_FloatingDamageNumber_C:WidgetTree.DamageText.Text
+msgctxt ",5E05531D474046FD09BBB69E8FE061DA"
+msgid "0"
+msgstr ""
+
+#. Key:	CONTROLS_ATTACK
+#. SourceLocation:	/Game/UI/Localization.Localization
+#: /Game/UI/Localization.Localization
+msgctxt "Localization,CONTROLS_ATTACK"
+msgid "Attack: L/R Mouse Btn."
+msgstr ""
+
+#. Key:	CONTROLS_DODGE
+#. SourceLocation:	/Game/UI/Localization.Localization
+#: /Game/UI/Localization.Localization
+msgctxt "Localization,CONTROLS_DODGE"
+msgid "Dodge: Left Ctrl"
+msgstr ""
+
+#. Key:	CONTROLS_JUMP
+#. SourceLocation:	/Game/UI/Localization.Localization
+#: /Game/UI/Localization.Localization
+msgctxt "Localization,CONTROLS_JUMP"
+msgid "Jump: Space"
+msgstr ""
+
+#. Key:	CONTROLS_LOOK
+#. SourceLocation:	/Game/UI/Localization.Localization
+#: /Game/UI/Localization.Localization
+msgctxt "Localization,CONTROLS_LOOK"
+msgid "Look: Mouse"
+msgstr ""
+
+#. Key:	CONTROLS_MOVE
+#. SourceLocation:	/Game/UI/Localization.Localization
+#: /Game/UI/Localization.Localization
+msgctxt "Localization,CONTROLS_MOVE"
+msgid "Move: W,A,S,D"
+msgstr ""
+
+#. Key:	CONTROLS_SHIELD
+#. SourceLocation:	/Game/UI/Localization.Localization
+#: /Game/UI/Localization.Localization
+msgctxt "Localization,CONTROLS_SHIELD"
+msgid "Shield: Q"
+msgstr ""
+
+#. Key:	CONTROLS_SPEC_ATTACK
+#. SourceLocation:	/Game/UI/Localization.Localization
+#: /Game/UI/Localization.Localization
+msgctxt "Localization,CONTROLS_SPEC_ATTACK"
+msgid "Special Attack: E"
+msgstr ""
+
+#. Key:	4C5662C64F67E9AE4C77699863344AC2
+#. SourceLocation:	/Game/UI/WBP_Cooldown_Entry.WBP_Cooldown_Entry_C:WidgetTree.S.Text
+#: /Game/UI/WBP_Cooldown_Entry.WBP_Cooldown_Entry_C:WidgetTree.S.Text
+msgctxt ",4C5662C64F67E9AE4C77699863344AC2"
+msgid " s"
+msgstr ""
+
+#. Key:	A6B69DE5486944CCC947BCABD287452A
+#. SourceLocation:	/Game/UI/WBP_Cooldown_Entry.WBP_Cooldown_Entry_C:WidgetTree.SkillName.Text
+#: /Game/UI/WBP_Cooldown_Entry.WBP_Cooldown_Entry_C:WidgetTree.SkillName.Text
+msgctxt ",A6B69DE5486944CCC947BCABD287452A"
+msgid "Skill Name "
+msgstr ""
+
+#. Key:	74BDACF94667D34D9165D0BC4EBB73D0
+#. SourceLocation:	/Game/UI/WBP_Cooldown_Entry.WBP_Cooldown_Entry_C:WidgetTree.Time.Text
+#: /Game/UI/WBP_Cooldown_Entry.WBP_Cooldown_Entry_C:WidgetTree.Time.Text
+msgctxt ",74BDACF94667D34D9165D0BC4EBB73D0"
+msgid "00.0"
+msgstr ""
+
+#. Key:	BEBAAD794D9EB5775F9FEAB9B87BC42C
+#. SourceLocation:	/Game/UI/WBP_EnemyFelled.WBP_EnemyFelled_C:WidgetTree.TextBlock_299.Text
+#: /Game/UI/WBP_EnemyFelled.WBP_EnemyFelled_C:WidgetTree.TextBlock_299.Text
+msgctxt ",BEBAAD794D9EB5775F9FEAB9B87BC42C"
+msgid "ENEMY FELLED"
+msgstr ""
+
+#. Key:	F2EF60F5444C4CDA866204BE45A3FEEC
+#. SourceLocation:	/Game/UI/WBP_Loading.WBP_Loading_C:WidgetTree.TextBlock_28.Text
+#: /Game/UI/WBP_Loading.WBP_Loading_C:WidgetTree.TextBlock_28.Text
+msgctxt ",F2EF60F5444C4CDA866204BE45A3FEEC"
+msgid "Loading..."
+msgstr ""
+
+#. Key:	C55A59E244C5726469B2B8AC28699C50
+#. SourceLocation:	/Game/UI/WBP_PlayerCooldowns.WBP_PlayerCooldowns_C:WidgetTree.TextBlock_58.Text
+#: /Game/UI/WBP_PlayerCooldowns.WBP_PlayerCooldowns_C:WidgetTree.TextBlock_58.Text
+msgctxt ",C55A59E244C5726469B2B8AC28699C50"
+msgid "Cooldowns"
+msgstr ""
+
+#. Key:	7D650A574A3C4FF7A849B5A2422A6629
+#. SourceLocation:	/Game/UI/WBP_YouDied.WBP_YouDied_C:WidgetTree.TextBlock_299.Text
+#: /Game/UI/WBP_YouDied.WBP_YouDied_C:WidgetTree.TextBlock_299.Text
+msgctxt ",7D650A574A3C4FF7A849B5A2422A6629"
+msgid "YOU DIED"
+msgstr ""
+

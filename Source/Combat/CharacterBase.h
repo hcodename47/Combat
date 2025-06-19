@@ -28,6 +28,9 @@ public:
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override { return AbilityComponent; }
 	virtual UCharacterAttributeSet* GetAttributeSet() const { return AttributeSet; }
 
+	UFUNCTION(BlueprintCallable, Category = "Character")
+	const FText& GetCharacterName() const { return CharacterName; }
+
 	UFUNCTION(BlueprintCallable, Category = "Status")
 	bool IsCharacterAlive() const { return bIsCharacterAlive; }
 
@@ -81,4 +84,7 @@ protected:
 	UPROPERTY(BlueprintReadOnly, Category = "Status")
 	bool bIsInvulnerable = false;
 	float InvulnerableTime = 0.0f;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Character", meta = (AllowPrivateAccess = "true"))
+	FText CharacterName;
 };
