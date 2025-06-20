@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "UObject/ObjectMacros.h"
 #include "Templates/SubclassOf.h"
+#include "GameplayAbility_Base.h"
 #include "GameplayAbilitySpec.h"
 #include "GameplayEffect.h"
 #include "GameplayEffectTypes.h"
@@ -14,7 +15,7 @@ class UAnimMontage;
 class USoundBase;
 
 UCLASS()
-class COMBAT_API UGameplayAbility_SimpleAttack : public UGameplayAbility
+class COMBAT_API UGameplayAbility_SimpleAttack : public UGameplayAbility_Base
 {
 	GENERATED_BODY()
 
