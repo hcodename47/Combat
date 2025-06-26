@@ -11,6 +11,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
 #include "PlayerCharAnimationsComponent.h"
+#include "PlayerCharacterCombatComponent.h"
 #include "PlayerHUD.h"
 #include "Misc/Optional.h"
 
@@ -18,6 +19,8 @@ APlayerCharacter::APlayerCharacter()
 {
 	PlayerCharacterAnimationsComponent = CreateDefaultSubobject<UPlayerCharAnimationsComponent>(TEXT("PlayerCharAnimationsComponent"));
 	CharacterAnimationsComponent = PlayerCharacterAnimationsComponent;
+
+	PlayerCharacterCombatComponent = CreateDefaultSubobject<UPlayerCharacterCombatComponent>(TEXT("PlayerCharacterCombatComponent"));
 
 	PrimaryActorTick.bCanEverTick = true;
 

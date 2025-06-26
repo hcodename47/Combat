@@ -18,7 +18,8 @@ public class Combat : ModuleRules
 			"GameplayTags",
 			"GameplayAbilities",
 			"GameplayTasks",
-			"UMG"
+			"UMG",
+			"MoviePlayer"
 		});
 	}
 }

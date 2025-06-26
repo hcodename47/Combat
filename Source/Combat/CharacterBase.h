@@ -43,11 +43,17 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Debug")
 	void Kill();
 
+	UFUNCTION(BlueprintCallable, Category = "Debug")
+	void DoDamage(float Value);
+
 	UFUNCTION(BlueprintImplementableEvent, Category = "Events")
 	void OnAttributeChanged();
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Events")
 	void OnDeath();
+
+	UFUNCTION(BlueprintCallable, Category = "Ability")
+	bool HasRunningAbility() const;
 
 	UPROPERTY(BlueprintAssignable, Category = "Status")
 	FDeathEventDispatcher OnCharacterDeathDispatcher;

@@ -45,6 +45,35 @@ void ACharacterBase::Kill()
 	}
 }
 
+void ACharacterBase::DoDamage(float Value)
+{
+	if(UAbilitySystemComponent* ASC = GetAbilitySystemComponent())
+	{
+		if(UCharacterAttributeSet* CharacterAS = GetAttributeSet())
+		{
+			const float v = CharacterAS->GetMaxHealth() * Value;
+			CharacterAS->SetHealth(FMath::Max(0.0f,CharacterAS->GetHealth() - v));
+			OnAttributeChanged();
+		}
+	}
+}
+
+bool ACharacterBase::HasRunningAbility() const
+{
+	if(!AbilityComponent)
+	{
+		return false;
+	}
+
+	for(FGameplayAbilitySpec& AbilitySpec : AbilityComponent->GetActivatableAbilities())
+	{
+		if(AbilitySpec.IsActive())
+			return true;
+	}
+	
+    return false;
+}
+
 void ACharacterBase::InitializeAttributes()
 {
 	if(!AbilityComponent || !DefaultAttributeEffect)
