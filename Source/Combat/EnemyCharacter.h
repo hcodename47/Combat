@@ -12,6 +12,13 @@ class COMBAT_API AEnemyCharacter : public ACharacterBase
 public:
 	AEnemyCharacter();
 
+	UFUNCTION(BlueprintCallable, Category = "Enemy Character")
+	bool IsBoss() const { return bIsBoss; }
+
 protected:
 	virtual void BeginPlay() override;
+
+protected:
+	UPROPERTY(EditDefaultsOnly, Category = "Enemy Character", meta = (AllowPrivateAccess = "true"))
+	bool bIsBoss = false;
 };
